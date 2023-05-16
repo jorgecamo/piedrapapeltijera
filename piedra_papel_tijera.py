@@ -3,9 +3,12 @@ import random
 Piedra = 'piedra'
 Papel = 'papel'
 Tijera = 'tijera'
-Opciones = [Piedra, Papel, Tijera]
-GanaUsuario = [[Papel, Piedra], [Tijera, Papel], [Piedra, Tijera]]
-GanaOrdenador = [[Piedra, Papel], [Papel, Tijera], [Tijera, Piedra]]
+Lagarto = 'lagarto'
+Opciones = [Piedra, Papel, Tijera, Lagarto]
+GanaUsuario = [[Papel, Piedra], [Tijera, Papel], [Piedra, Tijera],
+               [Piedra, Lagarto], [Lagarto, Papel], [Tijera, Lagarto]]
+GanaOrdenador = [[Piedra, Papel], [Papel, Tijera], [Tijera, Piedra],
+                 [Lagarto, Piedra], [Papel, Lagarto], [Lagarto, Tijera]]
 
 
 def EleccionAlAzar():
@@ -21,7 +24,7 @@ def Resultado(eleccionHumano, eleccionOrdenador):
     return 0
 
 
-print("JUEGO : Piedra, papel y tijera")
+print("JUEGO : Piedra, papel , tijera y lagarto")
 while 1:
     Jugar = input("Quieres jugar? (s/n): ")
     if 's' in Jugar.lower():
@@ -29,14 +32,16 @@ while 1:
         EleccionHumano = 0
         while True and 1 == 1:
             Movimiento = input("Selecciona un movimiento ('p' para piedra / 'a' para papel /"
-                               " 't' para tijeras / 'TERMINAR' para acabar): ").lower()
+                               " 't' para tijeras / 'l' para lagarto /'TERMINAR' para acabar): ").lower()
             print(f"Elección del ordenador: {EleccionOrdenador}")
-            if 'p' in Movimiento or 'a' in Movimiento or 't' in Movimiento:
-                if 'terminar' in Movimiento:
-                    print("Tienes miedo?")
-                    break
-                elif 'a' in Movimiento:
+            if 'terminar' in Movimiento:
+                print("Tienes miedo?")
+                break
+            if 'p' in Movimiento or 'a' in Movimiento or 't' in Movimiento or 'l' in Movimiento:
+                if 'a' in Movimiento:
                     EleccionHumano = Papel
+                elif 'l' in Movimiento:
+                    EleccionHumano = Lagarto
                 elif 't' in Movimiento:
                     EleccionHumano = Tijera
                 elif 'p' in Movimiento:
