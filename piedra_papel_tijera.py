@@ -23,34 +23,37 @@ def Resultado(eleccionHumano, eleccionOrdenador):
 
 print("JUEGO : Piedra, papel y tijera")
 Nombre = input("Dime como te llamas: ")
-while 1:
-    Jugar = input("Quieres jugar? (s/n): ")
-    if 's' in Jugar.lower():
-        EleccionOrdenador = EleccionAlAzar()
-        EleccionHumano = 1
-        while True and 1 == 1:
-            Movimiento = input("Selecciona un movimiento ('p' para piedra / 'a' para papel /"
-                               " 't' para tijeras): ").lower()
-            print(f"Elección del ordenador: {EleccionOrdenador}")
-            if 'p' in Movimiento or 'a' in Movimiento or 't' in Movimiento:
-                if 'p' in Movimiento:
-                    EleccionHumano = Piedra
-                elif 'a' in Movimiento:
-                    EleccionHumano = Papel
-                elif 't' in Movimiento:
-                    EleccionHumano = Tijera
-                print(f"Elección del usuario: {EleccionHumano}")
-                if Resultado(EleccionHumano, EleccionOrdenador) == 1:
-                    print("Has ganado " + Nombre)
-                elif Resultado(EleccionHumano, EleccionOrdenador) == -1:
-                    print("Gana el ordenador !!!")
-                elif Resultado(EleccionHumano, EleccionOrdenador) == 0:
-                    print("Empate !!!")
-                break
-            else:
-                print("Entrada incorrecta. Vuelve a intentar.")
-    elif 'n' in Jugar.lower():
-        break
-    else:
-        print('Entrada incorrecta. Vuelve a intentar.')
-    print()
+Intentos = int(input("Cuantos intentos quieres ? "))
+GanadasOrdenador = 0
+GanadasUsuario = 0
+while Intentos > 0:
+    EleccionOrdenador = EleccionAlAzar()
+    EleccionHumano = 1
+    while True:
+        Movimiento = input("Selecciona un movimiento ('p' para piedra / 'a' para papel /"
+                           " 't' para tijeras): ").lower()
+        print(f"Elección del ordenador: {EleccionOrdenador}")
+        if 'p' in Movimiento or 'a' in Movimiento or 't' in Movimiento:
+            if 'p' in Movimiento:
+                EleccionHumano = Piedra
+            elif 'a' in Movimiento:
+                EleccionHumano = Papel
+            elif 't' in Movimiento:
+                EleccionHumano = Tijera
+            print(f"Elección del usuario: {EleccionHumano}")
+            if Resultado(EleccionHumano, EleccionOrdenador) == 1:
+                GanadasUsuario += 1
+            elif Resultado(EleccionHumano, EleccionOrdenador) == -1:
+                GanadasOrdenador += 1
+            elif Resultado(EleccionHumano, EleccionOrdenador) == 0:
+                print("Empate !!!")
+            break
+        else:
+            print("Entrada incorrecta. Vuelve a intentar.")
+    Intentos -= 1
+if GanadasOrdenador > GanadasUsuario:
+    print("Ha ganado el ordenador, y ha ganado " + str(GanadasOrdenador) + " veces")
+elif GanadasUsuario > GanadasOrdenador:
+    print("Ha ganado " + Nombre + " , y ha ganado " + str(GanadasUsuario) + " veces")
+else:
+    print("Han quedado empate")
