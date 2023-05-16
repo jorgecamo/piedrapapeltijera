@@ -26,18 +26,21 @@ while 1:
     Jugar = input("Quieres jugar? (s/n): ")
     if 's' in Jugar.lower():
         EleccionOrdenador = EleccionAlAzar()
-        EleccionHumano = 1
+        EleccionHumano = 0
         while True and 1 == 1:
             Movimiento = input("Selecciona un movimiento ('p' para piedra / 'a' para papel /"
-                               " 't' para tijeras): ").lower()
+                               " 't' para tijeras / 'TERMINAR' para acabar): ").lower()
             print(f"Elección del ordenador: {EleccionOrdenador}")
             if 'p' in Movimiento or 'a' in Movimiento or 't' in Movimiento:
-                if 'p' in Movimiento:
-                    EleccionHumano = Piedra
+                if 'terminar' in Movimiento:
+                    print("Tienes miedo?")
+                    break
                 elif 'a' in Movimiento:
                     EleccionHumano = Papel
                 elif 't' in Movimiento:
                     EleccionHumano = Tijera
+                elif 'p' in Movimiento:
+                    EleccionHumano = Piedra
                 print(f"Elección del usuario: {EleccionHumano}")
                 if Resultado(EleccionHumano, EleccionOrdenador) == 1:
                     print("Gana el usuario !!!")
