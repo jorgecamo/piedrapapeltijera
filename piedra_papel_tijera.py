@@ -22,6 +22,7 @@ def Resultado(eleccionHumano, eleccionOrdenador):
 
 
 print("JUEGO : Piedra, papel y tijera")
+Nombre = input("Dime como te llamas: ")
 while 1:
     Jugar = input("Quieres jugar? (s/n): ")
     if 's' in Jugar.lower():
@@ -40,7 +41,7 @@ while 1:
                     EleccionHumano = Tijera
                 print(f"Elección del usuario: {EleccionHumano}")
                 if Resultado(EleccionHumano, EleccionOrdenador) == 1:
-                    print("Gana el usuario !!!")
+                    print("Has ganado " + Nombre)
                 elif Resultado(EleccionHumano, EleccionOrdenador) == -1:
                     print("Gana el ordenador !!!")
                 elif Resultado(EleccionHumano, EleccionOrdenador) == 0:
