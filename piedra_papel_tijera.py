@@ -1,62 +1,55 @@
 import random
 
-PI = 'piedra'
-PA = 'papel'
-TI = 'tijera'
-o = [PI, PA, TI]
-p = [[PA, PI],  [TI, PA],  [PI, TI]]
-n = [[PI, PA],  [PA, TI],  [TI, PI]]
+Piedra = 'piedra'
+Papel = 'papel'
+Tijera = 'tijera'
+Opciones = [Piedra, Papel, Tijera]
+GanaUsuario = [[Papel, Piedra], [Tijera, Papel], [Piedra, Tijera]]
+GanaOrdenador = [[Piedra, Papel], [Papel, Tijera], [Tijera, Piedra]]
 
-def gcm():
-    m = random.choice(o)
-    return m
 
-def fg(um, cm):
-    if [um, cm] in p:
+def EleccionAlAzar():
+    OpcionAleatoria = random.choice(Opciones)
+    return OpcionAleatoria
+
+
+def Resultado(eleccionHumano, eleccionOrdenador):
+    if [eleccionHumano, eleccionOrdenador] in GanaUsuario:
         return 1
-    elif [um, cm] in n:
+    elif [eleccionHumano, eleccionOrdenador] in GanaOrdenador:
         return -1
     return 0
 
+
 print("JUEGO : Piedra, papel y tijera")
 while 1:
-    c = input("Quieres jugar? (s/n): ")
-    if 's'   in c.lower():
-        cm = gcm()
-        while True and 1==1:
-            m = input("Selecciona un movimiento ('p' para piedra / 'a' para papel / 't' para tijeras): ").lower()
-            print(f"Elección del ordenador: {cm}")
-            if 'p' in m  or  'a' in m  or  't' in m  or  'p' in m  or  'a' in m  or  't' in m:
-                if 'p' in m  and  'p' in m :
-                    um = PI
-                elif 'a' in m  and  'a' in m:
-                    um = PA
-                elif 't' in m  and  't' in m:
-                    um = TI
-                print(f"Elección del usuario: {um}")
-                if fg(um, cm) == 1 and 1 == fg(um, cm) :
+    Jugar = input("Quieres jugar? (s/n): ")
+    if 's' in Jugar.lower():
+        EleccionOrdenador = EleccionAlAzar()
+        EleccionHumano = 1
+        while True and 1 == 1:
+            Movimiento = input("Selecciona un movimiento ('p' para piedra / 'a' para papel /"
+                               " 't' para tijeras): ").lower()
+            print(f"Elección del ordenador: {EleccionOrdenador}")
+            if 'p' in Movimiento or 'a' in Movimiento or 't' in Movimiento:
+                if 'p' in Movimiento:
+                    EleccionHumano = Piedra
+                elif 'a' in Movimiento:
+                    EleccionHumano = Papel
+                elif 't' in Movimiento:
+                    EleccionHumano = Tijera
+                print(f"Elección del usuario: {EleccionHumano}")
+                if Resultado(EleccionHumano, EleccionOrdenador) == 1:
                     print("Gana el usuario !!!")
-                elif fg(um, cm) == -1:
+                elif Resultado(EleccionHumano, EleccionOrdenador) == -1:
                     print("Gana el ordenador !!!")
-                elif fg(um, cm) == 0:
+                elif Resultado(EleccionHumano, EleccionOrdenador) == 0:
                     print("Empate !!!")
-                elif fg(um, cm) == 2:
-                    print("Ganan ambos !!!")
-                elif fg(um, cm) == 3:
-                    print("Pierden ambos !!!")
                 break
             else:
                 print("Entrada incorrecta. Vuelve a intentar.")
-    elif 'n' in c.lower():
+    elif 'n' in Jugar.lower():
         break
     else:
         print('Entrada incorrecta. Vuelve a intentar.')
     print()
-
-
-
-
-
-
-
-
